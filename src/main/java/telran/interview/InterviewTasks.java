@@ -1,5 +1,7 @@
 package telran.interview;
 
+import java.util.HashSet;
+
 public class InterviewTasks {
     /**
      * 
@@ -9,7 +11,11 @@ public class InterviewTasks {
      *  summing of which gives the value equaled to a given "sum" value
      */
     static public boolean hasSumTwo(int [] array, int sum) {
-        //TODO
-        return false;
+        HashSet<Integer> helpers = new HashSet<>();
+        int index = 0;
+        while(index < array.length && !helpers.contains(sum - array[index])) {
+            helpers.add(array[index++]);
+        }
+        return index < array.length;
     }
 }
