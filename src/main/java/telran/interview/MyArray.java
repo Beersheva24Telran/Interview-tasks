@@ -1,31 +1,40 @@
 package telran.interview;
 
+import java.util.HashMap;
 
 //all methods must have complexity O[1]
 public class MyArray<T> {
- //TODO
+	private T allValue;
+	private HashMap<Integer, T> mapArray = new HashMap<>();
+	private int size;
 	public void setAll(T value) {
-        //TODO
 		//all array's elements should be set with a given value
+		allValue = value;
+		mapArray = new HashMap<>();
 		
 	}
 	public void set(int index, T value) {
-        //TODO
 		//set new value at a given index
 		//throws ArrayIndexOutOfBoundsException for incorrect index
-        throw new UnsupportedOperationException();
-		
+       checkIndex(index);
+	   mapArray.put(index, value);	
 	}
 	
 	public T get(int index) {
 		//returns a value at a given index
 		//throws ArrayIndexOutOfBoundsException for incorrect index
-        throw new UnsupportedOperationException();
+		checkIndex(index);
+		return mapArray.getOrDefault(index, allValue);
 		
+	}
+	private void checkIndex(int index) {
+		if (index < 0 || index >= size) {
+			throw new ArrayIndexOutOfBoundsException(index);
+		}
 	}
 	public MyArray(int size) {
 		//creates the Array object for a given size
 		//with setting null's at each element
-		throw new UnsupportedOperationException();
+		this.size = size;
 	}
 }

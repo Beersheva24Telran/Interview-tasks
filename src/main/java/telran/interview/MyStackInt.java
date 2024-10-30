@@ -1,34 +1,45 @@
 package telran.interview;
+
+import java.util.*;
+
 //All methods should have complexity O[1]
 public class MyStackInt {
-   
+   private LinkedList<Integer> numbers = new LinkedList<>();
+   private LinkedList<Integer> maxNumbers = new LinkedList<>();
 	public void push(int num) {
-        //TODO
 		//adds num into top of stack (last element)
-		throw new UnsupportedOperationException();
+		numbers.addLast(num);
+		if(maxNumbers.isEmpty() || num >= maxNumbers.getLast()){
+			maxNumbers.addLast(num);
+		}
 	}
 	public int pop() {
-        //TODO
 		//removes element from top of stack (last element)
 		//returns being removed number
 		//throws exception if the stack is empty
-		throw new UnsupportedOperationException();
+		checkEmpty();
+		int res = numbers.removeLast();
+		if(res == maxNumbers.getLast()) {
+			maxNumbers.removeLast();
+		}
+		return res;
+	}
+	private void checkEmpty() {
+		if(numbers.isEmpty()) {
+			throw new EmptyStackException();
+		}
 	}
 	public int peek() {
-        //TODO
-		//returns last number
-		//throws exception if the stack is empty
-		throw new UnsupportedOperationException();
+        checkEmpty();
+		return numbers.getLast();
 	}
 	public boolean isEmpty() {
-        //TODO
-		//returns true if the stack is empty, otherwise false
-		throw new UnsupportedOperationException();
+        return numbers.isEmpty();
 	}
 	public int getMaxElement() {
-        //TODO
 		//returns the max number from the stack
 		//throws exception if the stack is empty
-		throw new UnsupportedOperationException();
+		checkEmpty();
+		return maxNumbers.getLast();
 	}
 }
